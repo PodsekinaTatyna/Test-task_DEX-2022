@@ -1,0 +1,14 @@
+C:\Users\Professional\Desktop\Test-task_DEX-2022\ModelsDb\bin\Debug\net6.0\ModelsDb.deps.json
+C:\Users\Professional\Desktop\Test-task_DEX-2022\ModelsDb\bin\Debug\net6.0\ModelsDb.runtimeconfig.json
+C:\Users\Professional\Desktop\Test-task_DEX-2022\ModelsDb\bin\Debug\net6.0\ModelsDb.dll
+C:\Users\Professional\Desktop\Test-task_DEX-2022\ModelsDb\bin\Debug\net6.0\ModelsDb.pdb
+C:\Users\Professional\Desktop\Test-task_DEX-2022\ModelsDb\obj\Debug\net6.0\ModelsDb.csproj.AssemblyReference.cache
+C:\Users\Professional\Desktop\Test-task_DEX-2022\ModelsDb\obj\Debug\net6.0\ModelsDb.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Professional\Desktop\Test-task_DEX-2022\ModelsDb\obj\Debug\net6.0\ModelsDb.AssemblyInfoInputs.cache
+C:\Users\Professional\Desktop\Test-task_DEX-2022\ModelsDb\obj\Debug\net6.0\ModelsDb.AssemblyInfo.cs
+C:\Users\Professional\Desktop\Test-task_DEX-2022\ModelsDb\obj\Debug\net6.0\ModelsDb.csproj.CoreCompileInputs.cache
+C:\Users\Professional\Desktop\Test-task_DEX-2022\ModelsDb\obj\Debug\net6.0\ModelsDb.dll
+C:\Users\Professional\Desktop\Test-task_DEX-2022\ModelsDb\obj\Debug\net6.0\refint\ModelsDb.dll
+C:\Users\Professional\Desktop\Test-task_DEX-2022\ModelsDb\obj\Debug\net6.0\ModelsDb.pdb
+C:\Users\Professional\Desktop\Test-task_DEX-2022\ModelsDb\obj\Debug\net6.0\ModelsDb.genruntimeconfig.cache
+C:\Users\Professional\Desktop\Test-task_DEX-2022\ModelsDb\obj\Debug\net6.0\ref\ModelsDb.dll
