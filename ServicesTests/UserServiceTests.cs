@@ -9,7 +9,7 @@ namespace ServicesTests
     public class UserServiceTests
     {
         [Fact]
-        public async Task AddUserAsync_SuccessTest()
+        public async Task AddUserAsync_AddingErrors_SuccessfulAdd_Test()
         {
             //Arrange
             UserService userService = new UserService();
@@ -33,7 +33,7 @@ namespace ServicesTests
         }
 
         [Fact]
-        public async Task DeleteUserAsync()
+        public async Task DeleteUserAsync_DeletionErrors_SuccessfulDelete_Test()
         {
             //Arrange
             UserService userService = new UserService();
@@ -59,7 +59,7 @@ namespace ServicesTests
         }
 
         [Fact]
-        public async Task UpdateUserAsync()
+        public async Task UpdateUserAsync_UpdateErrors_SuccessfulUpdate_Test()
         {
             //Arrange
             UserService userService = new UserService();
@@ -86,7 +86,7 @@ namespace ServicesTests
         }
 
         [Fact]
-        public async Task GetFilteredUsers()
+        public async Task GetFilteredUsers_OrdinaryUsers_Test()
         {
             //Arrange
             UserService userService = new UserService();
