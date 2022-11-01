@@ -109,7 +109,11 @@ namespace ServicesTests
             users = await userService.GetFilteredUsers(userFilter);
 
             //Assert
-            Assert.NotNull(users);
+            foreach(User user in users)
+            {
+                Assert.True(user.IsAdmin == userFilter.IsAdmin);
+            }
+
         }
     }
 }

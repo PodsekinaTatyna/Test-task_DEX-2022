@@ -3,6 +3,7 @@ using Services;
 using Models;
 using Services.Filters;
 using Bogus;
+using Bogus.DataSets;
 
 namespace ServicesTests
 {
@@ -107,7 +108,7 @@ namespace ServicesTests
         }
 
         [Fact]
-        public async Task GetFilteredAds()
+        public async Task GetFilteredAds_GetAdsInDateRange_SuccessfulTest()
         {
             //Arrange
             UserService userService = new UserService();
@@ -122,13 +123,22 @@ namespace ServicesTests
                 await adService.AddAdAsync(generator.GetFakerDataAd(user.Id).Generate());
             }
 
-            //Act/Assert
+            List<Ad> ads = new List<Ad>();
+
+            //Act
             adFilter.Page = 1;
             adFilter.Size = 3;
             adFilter.StartDate = new DateTime(2022, 10, 20);
             adFilter.EndDate = new DateTime(2022, 11, 1);
 
-            Assert.NotNull(await adService.GetFilteredAds(adFilter));
+            ads = await adService.GetFilteredAds(adFilter);
+
+            //Assert
+            foreach (Ad ad in ads)
+            {
+                Assert.True(ad.CreatedBy >= adFilter.StartDate && ad.CreatedBy <= adFilter.EndDate);
+            }
+           
         }
     }
 }
