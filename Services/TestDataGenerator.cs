@@ -24,7 +24,7 @@ namespace Services
                 .RuleFor(u => u.Number, f => f.Random.Int(1, 10))
                 .RuleFor(u => u.UserId, f => userId)
                 .RuleFor(u => u.Text, f => f.Lorem.Text())
-                .RuleFor(u => u.Image, f => f.Image.ToString())
+                .RuleFor(u => u.Image, f => f.Image.PicsumUrl())
                 .RuleFor(u => u.Rating, f => f.Random.Int(1, 10))
                 .RuleFor(u => u.CreatedBy, f => DateTime.Now)
                 .RuleFor(u => u.ExpirationDate, f => DateTime.Now.AddDays(7));

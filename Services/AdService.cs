@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Models;
 using ModelsDb;
+using Services.Filters;
 
 namespace Services
 {
@@ -89,6 +90,44 @@ namespace Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task<List<Ad>> GetFilteredAds(AdFilter filter)
+        {
+            var query = _context.Ads.AsQueryable().AsNoTracking();
 
+            if (filter.Number != 0)
+                query = query.Where(p => p.Number == filter.Number);
+
+            if (filter.UserId != default)
+                query = query.Where(p => p.UserId == filter.UserId);
+
+            if (filter.Text != null)
+                query = query.Where(p => p.Text == filter.Text);
+
+            if (filter.Image != null)
+                query = query.Where(p => p.Image == filter.Image);
+
+            if (filter.maxRating != 0)
+                query = query.Where(p => p.Rating <= filter.maxRating);
+
+            if (filter.minRating != 0)
+                query = query.Where(p => p.Rating >= filter.minRating);
+
+            if (filter.StartDate != default)
+                query = query.Where(p => p.CreatedBy >= filter.StartDate && p.ExpirationDate >= DateTime.Now);
+
+            if (filter.EndDate != default)
+                query = query.Where(p => p.CreatedBy <= filter.EndDate && p.ExpirationDate <= DateTime.Now);
+
+            var filteredList = await query.ToListAsync();
+
+            List<Ad> ads = new List<Ad>();
+
+            foreach(AdDb adDb in filteredList)
+            {
+                ads.Add(_mapper.Map<Ad>(adDb));
+            }
+
+            return ads;
+        }
     }
 }

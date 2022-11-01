@@ -105,5 +105,30 @@ namespace ServicesTests
                 Assert.True(false);
             }
         }
-}
+
+        [Fact]
+        public async Task GetFilteredAds()
+        {
+            //Arrange
+            UserService userService = new UserService();
+            AdService adService = new AdService();
+            TestDataGenerator generator = new TestDataGenerator();
+            AdFilter adFilter = new AdFilter();
+
+            for (int i = 0; i < 10; i++)
+            {
+                var user = generator.GetFakerDataUser().Generate();
+                await userService.AddUserAsync(user);
+                await adService.AddAdAsync(generator.GetFakerDataAd(user.Id).Generate());
+            }
+
+            //Act/Assert
+            adFilter.Page = 1;
+            adFilter.Size = 3;
+            adFilter.StartDate = new DateTime(2022, 10, 20);
+            adFilter.EndDate = new DateTime(2022, 11, 1);
+
+            Assert.NotNull(await adService.GetFilteredAds(adFilter));
+        }
+    }
 }
