@@ -3,13 +3,16 @@ using Microsoft.EntityFrameworkCore;
 using Models;
 using ModelsDb;
 using Services.Filters;
-using System.Collections.Generic;
+using Services.Validators;
+using FluentValidation;
 
 namespace Services
 {
     public class UserService
     {
         private BulletinBoardContext _context { get; set; }
+
+        private UserValidator _validationRules { get; set; }
 
         private IMapper _mapper { get; set; }
 
@@ -22,10 +25,12 @@ namespace Services
         {         
             _context = new BulletinBoardContext();
             _mapper = mapperConfiguration.CreateMapper();
+            _validationRules = new UserValidator();
         }
 
         public async Task<User> GetUserAsync(Guid id)
         {
+
             var userDb = await _context.Users.FirstOrDefaultAsync(p => p.Id == id);
 
             if(userDb == null)
@@ -37,6 +42,13 @@ namespace Services
 
         public async Task AddUserAsync(User user)
         {
+            var valedateResult = _validationRules.Validate(user);
+
+            if (!valedateResult.IsValid)
+            {
+                throw new ValidationException(valedateResult.Errors.ToString());
+            };
+
             var userDb = _mapper.Map<UserDb>(user);
 
             if (await _context.Users.FirstOrDefaultAsync(p => p.Id == user.Id) != null)
@@ -59,6 +71,13 @@ namespace Services
 
         public async Task UpdateUserAsync(User user)
         {
+            var valedateResult = _validationRules.Validate(user);
+
+            if (!valedateResult.IsValid)
+            {
+                throw new ValidationException(valedateResult.Errors.ToString());
+            };
+
             var userDb = await _context.Users.FirstOrDefaultAsync(p => p.Id == user.Id);
 
             if (userDb == null)

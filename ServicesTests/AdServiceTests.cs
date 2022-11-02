@@ -140,5 +140,39 @@ namespace ServicesTests
             }
            
         }
+
+        [Fact]
+        public async Task AdValidator_ErrorWhenWriting_IncorrectData_Test()
+        {
+            //Arange
+            UserService userService = new UserService();
+            AdService adService = new AdService();
+            TestDataGenerator generator = new TestDataGenerator();
+
+            Ad emptyAd = new Ad();
+
+            Ad negativeRating = new Ad
+            {
+                Id = Guid.NewGuid(),
+                Number = 1,
+                UserId = Guid.NewGuid(),
+                Text = "Text",
+                Rating = -5,
+                CreatedBy = DateTime.Now,
+                ExpirationDate = DateTime.Now.AddDays(7)           
+            };
+
+            //Act//Assert
+            try
+            {
+                await Assert.ThrowsAsync<FluentValidation.ValidationException>(() => adService.AddAdAsync(emptyAd));
+                await Assert.ThrowsAsync<FluentValidation.ValidationException>(() => adService.AddAdAsync(negativeRating));
+            }
+            catch(Exception)
+            {
+                Assert.True(false);
+            }
+        }
+
     }
 }

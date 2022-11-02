@@ -3,12 +3,16 @@ using Microsoft.EntityFrameworkCore;
 using Models;
 using ModelsDb;
 using Services.Filters;
+using Services.Validators;
+using FluentValidation;
 
 namespace Services
 {
     public class AdService
     {
         private BulletinBoardContext _context { get; set; }
+
+        private AdValidator _validationRules { get; set; }
 
         private IMapper _mapper { get; set; }
 
@@ -21,6 +25,7 @@ namespace Services
         {
             _context = new BulletinBoardContext();
             _mapper = mapperConfiguration.CreateMapper();
+            _validationRules = new AdValidator();
         }
 
         public async Task<Ad> GetAdAsync(Guid id)
@@ -35,6 +40,13 @@ namespace Services
 
         public async Task AddAdAsync(Ad ad)
         {
+            var valedateResult = _validationRules.Validate(ad);
+
+            if (!valedateResult.IsValid)
+            {
+                throw new ValidationException(valedateResult.Errors.ToString());
+            };
+
             var userDb = await _context.Users.FirstOrDefaultAsync(p => p.Id == ad.UserId);
 
             if (userDb == null)
@@ -67,6 +79,13 @@ namespace Services
 
         public async Task UpdateAdAsync(Ad ad)
         {
+            var valedateResult = _validationRules.Validate(ad);
+
+            if (!valedateResult.IsValid)
+            {
+                throw new ValidationException(valedateResult.Errors.ToString());
+            };
+
             var userDb = await _context.Users.FirstOrDefaultAsync(p => p.Id == ad.UserId);
 
             if (userDb == null)

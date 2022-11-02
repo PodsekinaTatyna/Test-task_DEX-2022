@@ -4,6 +4,7 @@ using Models;
 using Services.Filters;
 using Bogus;
 
+
 namespace ServicesTests
 {
     public class UserServiceTests
@@ -114,6 +115,44 @@ namespace ServicesTests
                 Assert.True(user.IsAdmin == userFilter.IsAdmin);
             }
 
+        }
+
+        [Fact]
+        public async Task UserValidator_ErrorWhenWriting_IncorrectData_Test()
+        {
+            //Arrange
+            UserService userService = new UserService();
+
+            User emptyUser = new User();
+
+            User wrongUsername = new User
+            {
+                Id = new Guid(),
+                Name = "1234",
+                IsAdmin = false
+
+            };
+
+            User correctUser = new User
+            {
+                Id = Guid.NewGuid(),
+                Name = "Tomas Hamer",
+                IsAdmin = false
+            };
+
+            //Act//Assert
+            try
+            {
+                await userService.AddUserAsync(correctUser);
+                Assert.NotNull(await userService.GetUserAsync(correctUser.Id));
+
+                await Assert.ThrowsAsync<FluentValidation.ValidationException>(() => userService.AddUserAsync(emptyUser));
+                await Assert.ThrowsAsync<FluentValidation.ValidationException>(() => userService.AddUserAsync(wrongUsername));
+            }
+            catch (Exception)
+            {
+                Assert.True(false);
+            }
         }
     }
 }
