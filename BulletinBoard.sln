@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicesTests", "ServicesTests\ServicesTests.csproj", "{E84D4B5C-5173-4847-B9E2-7C0BE73E7A25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulletinBoardAPI", "BulletinBoardAPI\BulletinBoardAPI.csproj", "{43075DC4-531F-438F-9376-B746DF1A4AD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BulletinBoardAPI", "BulletinBoardAPI\BulletinBoardAPI.csproj", "{43075DC4-531F-438F-9376-B746DF1A4AD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

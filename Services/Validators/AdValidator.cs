@@ -29,7 +29,7 @@ namespace Services.Validators
 
             RuleFor(p => p.CreatedBy)
                 .NotEmpty().WithMessage(message)
-                .LessThan(DateTime.Now).WithMessage(message);
+                .LessThanOrEqualTo(DateTime.Now.Date).WithMessage(message);
 
             RuleFor(p => p.ExpirationDate)
                 .NotEmpty().WithMessage(message);
