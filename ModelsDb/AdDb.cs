@@ -28,10 +28,10 @@ namespace ModelsDb
         [Column("rating")]
         public int Rating { get; set; }
 
-        [Column("created_by")]
+        [Column("created_by", TypeName = "date")]
         public DateTime CreatedBy { get; set; }
 
-        [Column("expiration_date")]
+        [Column("expiration_date", TypeName = "date")]
         public DateTime ExpirationDate { get; set; }
 
         public UserDb User { get; set; }
