@@ -3,11 +3,11 @@ using Models;
 
 namespace Services.Validators
 {
-    public class AdValidator : AbstractValidator<Ad>
+    public class AnnouncementValidator : AbstractValidator<Announcement>
     {
-        public AdValidator()
+        public AnnouncementValidator()
         {
-            var message = "Ошибкак в поле {PropertyName}: значение {PropertyValue}";
+            var message = "Ошибка в поле {PropertyName}: значение {PropertyValue}";
 
             RuleFor(p => p.Id)
                 .NotEmpty().WithMessage(message);
@@ -27,7 +27,7 @@ namespace Services.Validators
                 .GreaterThan(0).WithMessage(message)
                 .LessThanOrEqualTo(10).WithMessage(message);
 
-            RuleFor(p => p.CreatedBy)
+            RuleFor(p => p.Created)
                 .NotEmpty().WithMessage(message)
                 .LessThanOrEqualTo(DateTime.Now.Date).WithMessage(message);
 

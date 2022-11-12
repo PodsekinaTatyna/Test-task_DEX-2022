@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -13,12 +14,14 @@ namespace ModelsDb
         [Column("id")]
         public Guid Id { get; set; }
 
+        [Required]
         [Column("name")]
         public string Name { get; set; }
 
+        [Required]
         [Column("is_admin")]
         public bool IsAdmin { get; set; }
 
-        public ICollection<AdDb> Ads { get; set; }
+        public ICollection<AnnouncementDb> Ads { get; set; }
     }
 }

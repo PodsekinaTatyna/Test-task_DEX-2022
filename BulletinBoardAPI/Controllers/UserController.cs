@@ -35,7 +35,7 @@ namespace BulletinBoardAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddUser([FromQuery] User user)
+        public async Task<IActionResult> AddUser([FromBody] User user)
         {
             if (_context.Users.FirstOrDefault(u => u.Id == user.Id) != null)
                 return new BadRequestObjectResult(new KeyNotFoundException("Такой клиент есть в базе данных"));
@@ -56,7 +56,7 @@ namespace BulletinBoardAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateUser([FromQuery] User user)
+        public async Task<IActionResult> UpdateUser([FromBody] User user)
         {
             if (_context.Users.FirstOrDefault(u => u.Id == user.Id) == null)
                 return new BadRequestObjectResult(new KeyNotFoundException("Такого клиента нет в базе данных"));

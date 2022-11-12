@@ -26,7 +26,7 @@ namespace ServicesTests
                 IsAdmin = true,
             };
 
-            Ad ad = new Ad
+            Announcement ad = new Announcement
             {
                 Id = new Guid(),
                 Number = 1,
@@ -34,17 +34,17 @@ namespace ServicesTests
                 Text = "Text",
                 Image = "image",
                 Rating = 10,
-                CreatedBy = DateTime.Now,
+                Created = DateTime.Now,
                 ExpirationDate = DateTime.Now.AddDays(7),
             };
 
             //At
             var userDb = mapper.Map<UserDb>(user);
-            var adDb = mapper.Map<AdDb>(ad);
+            var adDb = mapper.Map<AnnouncementDb>(ad);
 
             //Assert
             Assert.Equal(typeof(UserDb), userDb.GetType());
-            Assert.Equal(typeof(AdDb), adDb.GetType());
+            Assert.Equal(typeof(AnnouncementDb), adDb.GetType());
 
         }
 
@@ -66,7 +66,7 @@ namespace ServicesTests
                 IsAdmin = true,
             };
 
-            AdDb adDb = new AdDb
+            AnnouncementDb adDb = new AnnouncementDb
             {
                 Id = new Guid(),
                 Number = 1,
@@ -74,17 +74,17 @@ namespace ServicesTests
                 Text = "Text",
                 Image = "image",
                 Rating = 10,
-                CreatedBy = DateTime.Now,
+                Created = DateTime.Now,
                 ExpirationDate = DateTime.Now.AddDays(7),
             };
 
             //At
             var user = mapper.Map<User>(userDb);
-            var ad = mapper.Map<Ad>(adDb);
+            var ad = mapper.Map<Announcement>(adDb);
 
             //Assert
             Assert.Equal(typeof(User), user.GetType());
-            Assert.Equal(typeof(Ad), ad.GetType());
+            Assert.Equal(typeof(Announcement), ad.GetType());
 
         }
     }

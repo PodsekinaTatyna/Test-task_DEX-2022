@@ -31,7 +31,7 @@ namespace ModelsDb.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<DateTime>("CreatedBy")
+                    b.Property<DateTime>("Created")
                         .HasColumnType("date")
                         .HasColumnName("created_by");
 

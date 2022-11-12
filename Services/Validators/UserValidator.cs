@@ -8,7 +8,7 @@ namespace Services.Validators
     {
         public UserValidator()
         {
-            var message = "Ошибкак в поле {PropertyName}: значение {PropertyValue}";
+            var message = "Ошибка в поле {PropertyName}: значение {PropertyValue}";
 
             RuleFor(p => p.Id)
                 .NotEmpty()

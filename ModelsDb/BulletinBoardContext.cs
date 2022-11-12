@@ -9,7 +9,7 @@ namespace ModelsDb
 {
     public class BulletinBoardContext : DbContext
     {
-        public DbSet<AdDb> Ads { get; set; }
+        public DbSet<AnnouncementDb> Ads { get; set; }
 
         public DbSet<UserDb> Users { get; set; }
 
