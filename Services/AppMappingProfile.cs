@@ -8,7 +8,7 @@ namespace Services
     {
         public AppMappingProfile()
         {
-            CreateMap<Ad, AdDb>().ReverseMap();
+            CreateMap<Announcement, AnnouncementDb>().ReverseMap();
 
             CreateMap<User, UserDb>().ReverseMap();
         }

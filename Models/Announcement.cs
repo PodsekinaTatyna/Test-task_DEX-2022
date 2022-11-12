@@ -2,7 +2,7 @@
 
 namespace Models
 {
-    public class Ad
+    public class Announcement
     {
         public Guid Id { get; set; }
 
@@ -16,7 +16,7 @@ namespace Models
 
         public int Rating { get; set; }
 
-        public DateTime CreatedBy { get; set; }
+        public DateTime Created { get; set; }
 
         public DateTime ExpirationDate { get; set; }
     }

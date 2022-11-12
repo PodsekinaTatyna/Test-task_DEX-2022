@@ -42,12 +42,7 @@ namespace Services
 
         public async Task AddUserAsync(User user)
         {
-            var valedateResult = _validationRules.Validate(user);
-
-            if (!valedateResult.IsValid)
-            {
-                throw new ValidationException(valedateResult.Errors.ToString());
-            };
+            await _validationRules.ValidateAndThrowAsync(user);
 
             var userDb = _mapper.Map<UserDb>(user);
 
@@ -60,6 +55,8 @@ namespace Services
 
         public async Task DeleteUserAsync(User user)
         {
+            await _validationRules.ValidateAndThrowAsync(user);
+
             var userDb = await _context.Users.FirstOrDefaultAsync(p => p.Id == user.Id);
 
             if (userDb == null)
@@ -71,12 +68,7 @@ namespace Services
 
         public async Task UpdateUserAsync(User user)
         {
-            var valedateResult = _validationRules.Validate(user);
-
-            if (!valedateResult.IsValid)
-            {
-                throw new ValidationException(valedateResult.Errors.ToString());
-            };
+            await _validationRules.ValidateAndThrowAsync(user);
 
             var userDb = await _context.Users.FirstOrDefaultAsync(p => p.Id == user.Id);
 
@@ -107,12 +99,7 @@ namespace Services
 
             var filteredList = await query.Skip((filter.Page - 1) * filter.Size).Take(filter.Size).ToListAsync();
 
-            var listUser = new List<User>();
-
-            foreach(UserDb userDb in filteredList)
-            {
-                listUser.Add(_mapper.Map<User>(userDb));
-            }
+            var listUser = _mapper.Map<List<User>>(filteredList);
 
             return listUser;
         }
